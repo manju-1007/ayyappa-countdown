@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d09">
+<title>Swamy Sharanam • 41 Day Countdown</title>
+<style>
+:root{--gold:#e7bd70;--gold2:#f8e2ae;--bg:#100d09;--panel:#1b1711;--muted:#b9aa91}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:#fff4df;background:radial-gradient(ellipse at 50% 0%,#493018 0%,#1a130c 38%,#0b0907 78%);font-family:Georgia,'Times New Roman',serif}
+.wrap{width:min(760px,100%);margin:auto;padding:22px 16px 40px}
+.hero{text-align:center;padding:24px 12px 18px}
+.om{color:var(--gold2);font-size:18px;letter-spacing:7px;margin-bottom:12px}
+h1{font-size:clamp(28px,7vw,46px);line-height:1.08;margin:8px 0;color:var(--gold2);text-shadow:0 2px 22px #b7782d66}
+.sub{font-family:Arial,sans-serif;color:#ddc9a5;letter-spacing:2px;font-size:12px}
+.symbol{font-size:58px;margin:12px 0 4px;filter:drop-shadow(0 0 18px #d99c45)}
+.card{background:linear-gradient(145deg,#261d12ed,#15110cf2);border:1px solid #8d693c88;border-radius:22px;padding:22px;margin:14px 0;box-shadow:0 12px 35px #0008}
+.target{text-align:center;color:var(--gold);font-family:Arial,sans-serif;letter-spacing:2px;font-size:12px}
+.count{font-size:clamp(62px,16vw,100px);text-align:center;line-height:1.05;color:var(--gold2);font-weight:bold;text-shadow:0 0 25px #c78d3d55;margin:8px 0}
+.countlabel{text-align:center;color:#e8d8bc;font:13px Arial,sans-serif;letter-spacing:3px}
+.timegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:20px}
+.timebox{background:#0c0a08;border:1px solid #6d512f;border-radius:13px;padding:12px 4px;text-align:center}
+.timebox strong{display:block;font: bold 25px Arial,sans-serif;color:var(--gold2)}
+.timebox span{font:10px Arial,sans-serif;color:var(--muted);letter-spacing:1px}
+.quote{text-align:center;color:#e8d1a5;font-size:17px;line-height:1.6}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+h2{color:var(--gold2);font-size:21px;margin:0}
+.small{font:12px Arial,sans-serif;color:var(--muted)}
+.progress{height:8px;background:#090806;border-radius:20px;overflow:hidden;margin:14px 0 7px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#a66b2b,#f4d28d);transition:width .25s}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:14px}
+.day{min-height:53px;border:1px solid #58432a;background:#100d09;border-radius:10px;color:#f2dfbd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font:12px Arial,sans-serif;cursor:pointer}
+.day .n{font-weight:bold;font-size:15px}
+.day .tick{font-size:11px;color:var(--gold)}
+.day.done{background:#55401f;border-color:var(--gold);color:#fff3d7}
+.day.today{outline:2px solid var(--gold2);outline-offset:1px}
+.day.future{opacity:.5}
+button{border:1px solid #a47a43;background:#2b2013;color:#f8e2ae;padding:11px 15px;border-radius:12px;font-weight:bold;cursor:pointer}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.note{font:12px/1.6 Arial,sans-serif;color:#c6b596;margin-top:14px}
+footer{text-align:center;color:#c7a875;font-size:13px;padding:18px 8px}
+@media(max-width:390px){.week{gap:5px}.day{min-height:47px}.card{padding:17px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+ <header class="hero">
+  <div class="om">ॐ</div>
+  <div class="symbol">🙏</div>
+  <h1>SWAMY SHARANAM<br>AYYAPPA</h1>
+  <div class="sub">A JOURNEY OF FAITH • 41 DAYS</div>
+ </header>
+ <section class="card">
+  <div class="target">COUNTDOWN TO • MONDAY, 21 DECEMBER 2026</div>
+  <div class="count" id="days">41</div>
+  <div class="countlabel" id="label">DAYS TO GO</div>
+  <div class="timegrid">
+   <div class="timebox"><strong id="hours">00</strong><span>HOURS</span></div>
+   <div class="timebox"><strong id="minutes">00</strong><span>MINUTES</span></div>
+   <div class="timebox"><strong id="seconds">00</strong><span>SECONDS</span></div>
+  </div>
+ </section>
+ <section class="card">
+  <div class="quote">“Swamiye Saranam Ayyappa”<br><span class="small">May every day bring devotion, patience and peace.</span></div>
+ </section>
+ <section class="card">
+  <div class="sectionhead">
+   <h2>My 41-Day Tracker</h2>
+   <span class="small" id="completed">0 / 41 completed</span>
+  </div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="small" id="progressText">Your devotion journey starts here.</div>
+  <div class="week" id="calendar"></div>
+  <div class="actions">
+   <button id="todayBtn">Go to today</button>
+   <button id="resetBtn" type="button">Reset ticks</button>
+  </div>
+  <p class="note">Tap a date to mark it complete or undo it. Your ticks are saved in this browser on this device. The countdown updates automatically using your phone's date and time.</p>
+ </section>
+ <footer>🙏 SWAMIYE SARANAM AYYAPPA 🙏<br><span class="small">21 • 12 • 2026</span></footer>
+</main>
+<script>
+const start = new Date(2026,10,11,0,0,0); // first tracker day
+const target = new Date(2026,11,21,0,0,0);
+const total = 41;
+const key = 'ayyappa-41-day-tracker-v1';
+let done = {};
+try { done = JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch(e) { done = {}; }
+const pad = n => String(n).padStart(2,'0');
+function updateCountdown(){
+ const now = new Date();
+ const diff = Math.max(0,target.getTime()-now.getTime());
+ const wholeDays = Math.ceil(diff/86400000);
+ document.getElementById('days').textContent = wholeDays;
+ document.getElementById('label').textContent = wholeDays===1?'DAY TO GO':(wholeDays===0?'THE DAY IS HERE':'DAYS TO GO');
+ document.getElementById('hours').textContent = pad(Math.floor(diff/3600000)%24);
+ document.getElementById('minutes').textContent = pad(Math.floor(diff/60000)%60);
+ document.getElementById('seconds').textContent = pad(Math.floor(diff/1000)%60);
+}
+function save(){localStorage.setItem(key,JSON.stringify(done));}
+function render(){
+ const cal=document.getElementById('calendar'); cal.innerHTML='';
+ const today=new Date(); today.setHours(0,0,0,0);
+ let count=0;
+ for(let i=0;i<total;i++){
+  const date=new Date(start); date.setDate(start.getDate()+i);
+  const id=String(i+1);
+  const isDone=!!done[id]; if(isDone) count++;
+  const isToday=date.getTime()===today.getTime();
+  const isFuture=date>today;
+  const b=document.createElement('button');
+  b.type='button'; b.className='day'+(isDone?' done':'')+(isToday?' today':'')+(isFuture?' future':'');
+  b.setAttribute('aria-label',`Day ${i+1}, ${date.toDateString()}${isDone?', completed':''}`);
+  b.innerHTML=`<span class="n">${date.getDate()}</span><span>${isDone?'✓':`DAY ${i+1}`}</span>`;
+  b.addEventListener('click',()=>{done[id]=!done[id];if(!done[id])delete done[id];save();render();});
+  cal.appendChild(b);
+ }
+ document.getElementById('completed').textContent=`${count} / ${total} completed`;
+ document.getElementById('bar').style.width=(count/total*100)+'%';
+ document.getElementById('progressText').textContent=count===total?'All 41 days marked complete. Swamiye Saranam Ayyappa!':`${Math.round(count/total*100)}% completed`;
+}
+document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Clear all 41 day ticks?')){done={};save();render();}});
+document.getElementById('todayBtn').addEventListener('click',()=>{
+ const today=new Date();today.setHours(0,0,0,0);
+ const i=Math.floor((today-start)/86400000);
+ if(i>=0&&i<total){document.getElementById('calendar').children[i].scrollIntoView({behavior:'smooth',block:'center'});}
+});
+updateCountdown();render();setInterval(updateCountdown,1000);
+</script>
+</body>
+</html>
